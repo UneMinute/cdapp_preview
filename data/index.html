@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta property="og:title" content="">
+  <meta property="og:type" content="website">  
+  <meta property="og:url" content="">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+  <meta property="og:locale" content="fr_FR">
+  <meta name=twitter:title content="">
+  <meta name=twitter:description content="">
+  <meta name=twitter:image content="">
+  <meta name=twitter:card content=summary_large_image>
+  <link rel="canonical" href="">
+  <link rel="icon" sizes="192x192" href="./assets/favicon_192x192.png">
+  <link rel="icon" sizes="32x32" href="./assets/favicon_32x32.png">
+  <link rel="icon" sizes="16x16" href="./assets/favicon_16x16.png">
+  <link rel="apple-touch-icon" href="./assets/favicon_180x180.png">
+  <link rel="manifest" href="./my.webmanifest">
+  <meta name="theme-color" content="#FFFFFF">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300&&family=League+Spartan:wght@700&family=Playfair+Display:ital@0;1&display=swap"></noscript>
+  <link rel="preload" href="./css/normalize.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./css/normalize.css"></noscript>
+  <link rel="preload" href="./style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="./style.css"></noscript>
+</head>
+<body>
+
+<header>
+    
+</header>
+
+<main>
+    <section>
+        <header>
+            <div>
+                <h3>Profitez de nos réductions !</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget tincidunt tellus, eget placerat sapien.</p>
+                <p>Suspendisse non orci justo. In id nisl a erat pellentesque dapibus. In varius quam cursus est volutpat, nec lacinia sapien commodo.</p>
+            </div>
+        </header> 
+        <div class="length">
+            <span>Votre durée :</span>
+            <div class="dropdown">
+                <div class="dropdown-header" id="duration-dropdown-header"><span class="selected_value"></span><span class="icon up">v</span></div>
+                <ul class="dropdown-list" id="duration-dropdown-list">
+                    <li data-value="duration-1">6 jours</li>
+                    <li data-value="duration-2">7 jours</li>
+                    <li data-value="duration-3">11 jours</li>
+                    <li data-value="duration-4">15 jours</li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content duration-content" id="content">
+            <div data-id="duration-1" class="tab-pane">
+                <div class="best-week">
+                    <h4>Meilleure semaine</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget tincidunt tellus, eget placerat sapien.</p>
+                </div>
+                <div class="week-list">
+                    <h4>Meilleurs prix d'un forfait 6 jours pour un Adulte :</h4>
+                    <ul class="results">
+                        <li class="result best" data-value="week-1">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-2">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-3">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sticky-results_outer">
+                    <div class="sticky-results" data-id="week-1">
+                        <button class="sticky-results__close-btn">✕</button>
+                        <span class="dates_reminder">Semaine du 24 janvier au 06 février</span>
+                        <h4>Choisissez votre offre</h4>
+                        <div class="quota">Plus que <span>5</span>&nbsp;forfait(s) à ce tarif</div>
+                        <ul class="results">
+                            <li>
+                                <h5>La Plagne</h5>
+                                <span>à partir de</span>
+                                <button class="sticky-result_price" type="button">250,00€</button>
+                            </li>
+                            <li>
+                                <h5>Paradiski</h5>
+                                <span>à partir de</span>
+                                <button class="sticky-result_price" type="button">11350,00€</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div data-id="duration-2" class="tab-pane hidden">
+                <div class="best-week">
+                    <h4>Meilleure semaine</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget tincidunt tellus, eget placerat sapien.</p>
+                </div>
+                <div class="week-list">
+                    <h4>Meilleurs prix d'un forfait 6 jours pour un Adulte :</h4>
+                    <ul class="results">
+                        <li class="result best" data-value="week-1">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-2">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result best" data-value="week-3">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-4">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-5">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-6">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>  
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-7">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result best" data-value="week-8">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result best" data-value="week-9">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-10">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-11">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-12">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result best" data-value="week-13">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-14">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-15">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-16">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result best" data-value="week-17">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result" data-value="week-18">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                        <li class="result best" data-value="week-18">
+                            <div class="results_dates">
+                                <span class="">du 16/12</span>
+                                <span class="">au 22/12</span>
+                            </div>                          
+                            <button class="result_price" type="button">
+                                <span>250€</span>
+                                <span class="icon">></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sticky-results_outer">
+                    <div class="sticky-results" data-id="week-1">
+                        <button class="sticky-results__close-btn">✕</button>
+                        <span class="dates_reminder">Semaine du 24 janvier au 06 février</span>
+                        <h4>Choisissez votre offre</h4>
+                        <div class="quota">Plus que <span>5</span>&nbsp;forfait(s) à ce tarif</div>
+                        <ul class="results">
+                            <li>
+                                <h5>La Plagne</h5>
+                                <span>à partir de</span>
+                                <button class="sticky-result_price" type="button">250,00€</button>
+                            </li>
+                            <li>
+                                <h5>Paradiski</h5>
+                                <span>à partir de</span>
+                                <button class="sticky-result_price" type="button">11350,00€</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sticky-results" data-id="week-6">
+                        <button class="sticky-results__close-btn">✕</button>
+                        <span class="dates_reminder">Semaine du 24 janvier au 06 février</span>
+                        <h4>Choisissez votre offre</h4>
+                        <div class="quota">Plus que <span>5</span>&nbsp;forfait(s) à ce tarif</div>
+                        <ul class="results">
+                            <li>
+                                <h5>La Plagne</h5>
+                                <span>à partir de</span>
+                                <button class="sticky-result_price" type="button">250,00€</button>
+                            </li>
+                            <li>
+                                <h5>Paradiski</h5>
+                                <span>à partir de</span>
+                                <button class="sticky-result_price" type="button">11350,00€</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div data-id="duration-3" class="tab-pane hidden"></div>
+            <div data-id="duration-4" class="tab-pane hidden"></div>
+        </div>
+        <div class="infos">
+            <p>Suspendisse non orci justo. In id nisl a erat pellentesque dapibus. In varius quam cursus est volutpat, nec lacinia sapien commodo.</p>
+        </div>
+        
+    </section>
+</main>
+
+
+  <footer>
+
+  </footer>
+
+  <script async src="./js/scripts.js"></script>
+</body>
+</html>

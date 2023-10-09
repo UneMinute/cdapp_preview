@@ -1,0 +1,26 @@
+{
+    "en": {
+        "title": "",
+        "subtitle": "",
+        "weekTitle": "",
+        "weekInfo": "",
+        "week": "Week of",
+        "from": "from",
+        "to": "to",
+        "choose": "",
+        "startingFrom":"",
+        "contract":""
+    },
+    "fr": {
+        "title": "Profitez de nos réductions !",
+        "subtitle": "",
+        "weekTitle": "",
+        "weekInfo": "",
+        "week": "Semaine du",
+        "from": "du",
+        "to": "au",
+        "choose": "",
+        "startingFrom":"",
+        "contract":""
+    }
+}
