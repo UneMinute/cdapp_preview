@@ -4,13 +4,9 @@ const content = document.getElementById('content');
 const weekLists = document.querySelectorAll('.week-list');
 const durations = document.querySelectorAll('.tab-pane');
 let screenSize = 'small';
+const carousels = document.querySelectorAll('.carousel');
 
-const updateScreenSize = () => {
-    screenSize = (window.innerWidth >= 1250) ? 'large' : 'small';
-};
 
-window.onresize = updateScreenSize;
-updateScreenSize();
 
 // Afficher la première option par défaut
 dropdownHeader.querySelector('span.selected_value').textContent = dropdownList.querySelector('li').textContent;
@@ -105,147 +101,157 @@ durations.forEach((duration) => {
     });
 });
 
-const carousels = document.querySelectorAll('.carousel');
-
-weekLists.forEach((weekList) => {
-    const carousel = weekList.querySelector('.carousel');
-    const prevBtn = weekList.querySelector('.carouselBtn.prev');
-    const nextBtn = weekList.querySelector('.carouselBtn.next');
-    const visibleItemCount = 4;
-    let currentIndex = 0;
-    const delay = 500;
-    let isDragging = false;
-    let mouseMove = false;
-    let startPosition = 0;
-    let currentTranslate = 0;
-    let prevTranslate = 0;
-    let sensitivity = 2;
-    let currentPosition = 0;
-    const currentTransition = window.getComputedStyle(carousel).transition;
-
-    const clickHandler = (callback, delay) => {
-        let lastClickTime = 0;
-        let fastclick = false;
-
-        return function () {
-            const now = Date.now();
-            if (now - lastClickTime < delay) {
-                fastclick = true;
-            } else {
-                fastclick = false;
-            }
-
-            callback(fastclick);
-            lastClickTime = now;
+const loadCarousel = () => {
+    weekLists.forEach((weekList) => {
+        const carousel = weekList.querySelector('.carousel');
+        const prevBtn = weekList.querySelector('.carouselBtn.prev');
+        const nextBtn = weekList.querySelector('.carouselBtn.next');
+        const visibleItemCount = 4;
+        let currentIndex = 0;
+        const delay = 500;
+        let isDragging = false;
+        let mouseMove = false;
+        let startPosition = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let sensitivity = 2;
+        let currentPosition = 0;
+        const currentTransition = window.getComputedStyle(carousel).transition;
+    
+        const clickHandler = (callback, delay) => {
+            let lastClickTime = 0;
+            let fastclick = false;
+    
+            return function () {
+                const now = Date.now();
+                if (now - lastClickTime < delay) {
+                    fastclick = true;
+                } else {
+                    fastclick = false;
+                }
+    
+                callback(fastclick);
+                lastClickTime = now;
+            };
         };
-    };
-
-    nextBtn.addEventListener('click', clickHandler((fastclick) => {
-        if (fastclick) {
-            if (currentIndex + visibleItemCount < (carousel.children.length - visibleItemCount)) {
-                currentIndex += 4;
-                updateCarousel();
-            } else if (currentIndex + visibleItemCount < carousel.children.length) {
-                currentIndex = carousel.children.length - visibleItemCount;
-                updateCarousel();
-            }
-        } else {
-            if (currentIndex < carousel.children.length - visibleItemCount) {
-                currentIndex++;
-                updateCarousel();
-            }
-        }
-    }, delay));
-
-    prevBtn.addEventListener('click', clickHandler((fastclick) => {
-        if (fastclick) {
-            if (currentIndex - 4 >= 0) {
-                currentIndex -= 4;
-                updateCarousel();
+    
+        nextBtn.addEventListener('click', clickHandler((fastclick) => {
+            if (fastclick) {
+                if (currentIndex + visibleItemCount < (carousel.children.length - visibleItemCount)) {
+                    currentIndex += 4;
+                    updateCarousel();
+                } else if (currentIndex + visibleItemCount < carousel.children.length) {
+                    currentIndex = carousel.children.length - visibleItemCount;
+                    updateCarousel();
+                }
             } else {
-                currentIndex = 0;
-                updateCarousel();
+                if (currentIndex < carousel.children.length - visibleItemCount) {
+                    currentIndex++;
+                    updateCarousel();
+                }
             }
-        } else {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
-        }
-    }, delay));
-
-    const toggleBtn = () => {
-        const length = carousel.children.length;
-        let classe = '';
-        if (currentIndex === 0) {
-            classe = 'prev';
-        } else if (currentIndex === carousel.children.length - visibleItemCount) {
-            classe = 'next';
-        }
-        weekList.querySelectorAll('.carouselBtn').forEach((btn) => {
-            if (btn.classList.contains(classe)) {
-                btn.classList.add("disabled");
+        }, delay));
+    
+        prevBtn.addEventListener('click', clickHandler((fastclick) => {
+            if (fastclick) {
+                if (currentIndex - 4 >= 0) {
+                    currentIndex -= 4;
+                    updateCarousel();
+                } else {
+                    currentIndex = 0;
+                    updateCarousel();
+                }
             } else {
-                btn.classList.remove("disabled");
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            }
+        }, delay));
+    
+        const toggleBtn = () => {
+            const length = carousel.children.length;
+            let classe = '';
+            if (currentIndex === 0) {
+                classe = 'prev';
+            } else if (currentIndex === carousel.children.length - visibleItemCount) {
+                classe = 'next';
+            }
+            weekList.querySelectorAll('.carouselBtn').forEach((btn) => {
+                if (btn.classList.contains(classe)) {
+                    btn.classList.add("disabled");
+                } else {
+                    btn.classList.remove("disabled");
+                }
+            });
+        };
+    
+        const updateCarousel = () => {
+            const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
+            const translateX = -currentIndex * itemWidth;
+            carousel.style.transform = `translateX(${translateX}px)`;
+            prevTranslate = translateX;
+            toggleBtn();
+            return translateX;
+        };
+    
+        updateCarousel();
+    
+        carousel.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startPosition = e.clientX;
+            carousel.style.transition = 'none';
+        });
+    
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            mouseMove = true;
+            currentPosition = e.clientX;
+            const diff = currentPosition - startPosition;
+            currentTranslate = prevTranslate + diff / sensitivity;
+            carousel.style.transform = `translateX(${currentTranslate}px)`;
+        });
+    
+        carousel.addEventListener('mouseup', (e) => {
+            carousel.style.transition = currentTransition;
+            if (!isDragging) return;
+            isDragging = false;
+            if (!mouseMove) return;
+            mouseMove = false;
+            const diff = (startPosition - currentPosition) / sensitivity;
+            if (diff > 0) {
+                const newIndex = Math.floor(diff / 30);
+                if (currentIndex + visibleItemCount < (carousel.children.length - newIndex)) {
+                    currentIndex = newIndex;
+                } else if (currentIndex + visibleItemCount < carousel.children.length) {
+                    currentIndex = carousel.children.length - visibleItemCount;
+                }
+                prevTranslate = updateCarousel();
+            } else if (diff < 0) {
+                const newIndex = Math.ceil(diff / 30);
+                if ((currentIndex + newIndex) > 0) {
+                    currentIndex = currentIndex + newIndex;
+                } else {
+                    currentIndex = 0;
+                }
+                prevTranslate = updateCarousel();
             }
         });
-    };
-
-    const updateCarousel = () => {
-        const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
-        const translateX = -currentIndex * itemWidth;
-        carousel.style.transform = `translateX(${translateX}px)`;
-        prevTranslate = translateX;
-        toggleBtn();
-        return translateX;
-    };
-
-    updateCarousel();
-
-    carousel.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startPosition = e.clientX;
-        carousel.style.transition = 'none';
-    });
-
-    carousel.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        mouseMove = true;
-        currentPosition = e.clientX;
-        const diff = currentPosition - startPosition;
-        currentTranslate = prevTranslate + diff / sensitivity;
-        carousel.style.transform = `translateX(${currentTranslate}px)`;
-    });
-
-    carousel.addEventListener('mouseup', (e) => {
-        carousel.style.transition = currentTransition;
-        if (!isDragging) return;
-        isDragging = false;
-        if (!mouseMove) return;
-        mouseMove = false;
-        const diff = (startPosition - currentPosition) / sensitivity;
-        if (diff > 0) {
-            const newIndex = Math.floor(diff / 30);
-            if (currentIndex + visibleItemCount < (carousel.children.length - newIndex)) {
-                currentIndex = newIndex;
-            } else if (currentIndex + visibleItemCount < carousel.children.length) {
-                currentIndex = carousel.children.length - visibleItemCount;
+    
+        carousel.addEventListener('mouseleave', (e) => {
+            if (isDragging) {
+                carousel.dispatchEvent(new MouseEvent('mouseup'));
             }
-            prevTranslate = updateCarousel();
-        } else if (diff < 0) {
-            const newIndex = Math.ceil(diff / 30);
-            if ((currentIndex + newIndex) > 0) {
-                currentIndex = currentIndex + newIndex;
-            } else {
-                currentIndex = 0;
-            }
-            prevTranslate = updateCarousel();
-        }
+        });
     });
+}
 
-    carousel.addEventListener('mouseleave', (e) => {
-        if (isDragging) {
-            carousel.dispatchEvent(new MouseEvent('mouseup'));
-        }
-    });
-});
+loadCarousel();
+
+const updateScreenSize = () => {
+    screenSize = (window.innerWidth >= 1250) ? 'large' : 'small';
+    loadCarousel();
+};
+
+window.onresize = updateScreenSize;
+updateScreenSize();

@@ -239,22 +239,27 @@ h4 {
 .week-list .results li button svg path {
 	fill:rgb(var(--secondary-bg-color));
 }
+.week-list .results li button.result_price.selected svg path {
+	fill:#ffffff;
+}
+.week-list .results li button.result_price.selected {
+	color:#ffffff;
+}
 .week-list .results li.best button.result_price {
 	width:130px;
 	background-color:rgb(var(--secondary-bg-color));
-	color:white;
+	color:#ffffff;
 }
-.week-list .results li.best button svg path {
-	fill:#fff;
+.week-list .results li.best button.result_price svg path {
+	fill:#ffffff;
 }
 .week-list .results li button.result_price.selected {
 	background-color:rgb(var(--primary-bg-color));
 	border:1px solid rgb(var(--primary-bg-color));
-	color:white;
 }
 .sticky-result_price {
 	background-color:rgb(var(--primary-bg-color));
-	color: white;
+	color: #ffffff;
 	border: none;
 	padding:1rem 1.5rem;
 	font: inherit;
@@ -281,7 +286,7 @@ h4 {
 	border-radius: 0 0 9px 9px;
 	padding:0 1.8rem;
 	margin:0;
-	color:white;
+	color:#ffffff;
 	box-shadow: 0 0px 10px rgba(0,0,0,0.25), 0 0px 5px rgba(0,0,0,0.22);
 }
 .sticky-results.show {	
@@ -301,7 +306,7 @@ h4 {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-	color:white;
+	color:#ffffff;
 	opacity:.5;
 	font-size:1.2rem;
 }
@@ -313,7 +318,7 @@ h4 {
 }
 .sticky-results ul.results li {
 	text-align: center;
-	background-color:white;
+	background-color:#ffffff;
 	border-radius: 9px;
 	padding:1.6rem 1.5rem;
 	color:black;
