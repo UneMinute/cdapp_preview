@@ -2,6 +2,8 @@
 
 
 function formatDate($lang, $date, $full = null) {
+
+    $locale = $lang === 'fr' ? 'fr_FR.utf8' : 'en_GB.utf8';
     setlocale(LC_TIME, $lang);
 
     $newDate = new DateTime($date);

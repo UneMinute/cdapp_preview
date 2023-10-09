@@ -35,7 +35,12 @@
         <div class="length">
             <span>Votre durée :</span>
             <div class="dropdown">
-                <div class="dropdown-header" id="duration-dropdown-header"><span class="selected_value"></span><span class="icon up">v</span></div>
+                <div class="dropdown-header" id="duration-dropdown-header">
+                    <span class="selected_value"></span>
+                    <div class="icon up">
+                    <?xml version="1.0" ?><svg height="15" viewBox="0 0 1792 1792" width="15" xmlns="http://www.w3.org/2000/svg"><path d="M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg>
+                    </div>
+                </div>
                 <ul class="dropdown-list" id="duration-dropdown-list">
                     <li data-value="duration-1">6 jours</li>
                     <li data-value="duration-2">7 jours</li>
