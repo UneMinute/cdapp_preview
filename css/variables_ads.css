@@ -1,0 +1,10 @@
+:root {
+	--primary-bg-color: 101, 41, 97;
+	--secondary-bg-color: 0, 43, 86;
+	--offerA-bg-color: 0, 167, 181;
+	--offerB-bg-color: 239, 119, 103;
+	--sticky-height-mobile : 360px;
+	--sticky-height-desktop : 330.3px;	
+	--font-family-title: 'Arcadienne', sans-serif;
+	--font-family-paragraph: 'TTCommons', sans-serif;
+}

@@ -1,8 +1,9 @@
 <?php
-
 include __DIR__ . '/api/load_translations.php';
 include __DIR__ . '/api/load_data.php';
 include __DIR__ . '/api/format_date.php';
+include __DIR__ . '/api/format_data.php';
+define("ENV", "ads");
 
 $request_uri = $_SERVER['REQUEST_URI'];
 $lang = '';
@@ -19,14 +20,11 @@ switch ($request_uri) {
         break;
 }
 
-// A SUPPRIMER A LA MISE EN PROD
-function randomBoolean() {
-    $randomNumber = rand(0, 1);
-    return $randomNumber % 2 === 0;
-}
+$durations = [6, 7, 8, 9];
+$data = loadData('https://8pfh21wbh7.execute-api.eu-west-3.amazonaws.com/staging/' . ENV);
 
-define("D", loadData(__DIR__ . '/data/ads.json'));
+
+define("D", formatData($data, $durations));
 define("T", loadTranslations($lang, __DIR__ . '/data/translations.json'));
-
 require __DIR__ . '/view.php';
 ?>

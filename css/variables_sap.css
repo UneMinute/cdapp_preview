@@ -1,0 +1,10 @@
+:root {
+	--primary-bg-color: 194, 14, 25;
+	--secondary-bg-color: 59, 71, 92;
+	--offerA-bg-color: 194, 14, 25;
+	--offerB-bg-color: 194, 14, 25;
+	--sticky-height-mobile : 241.2px;
+	--sticky-height-desktop : 252.01px;
+	--font-family-title: 'Montserrat', sans-serif;
+	--font-family-paragraph: 'Montserrat', sans-serif;
+}

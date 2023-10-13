@@ -1,7 +1,7 @@
 <?php
 
 
-function formatDate($lang, $date, $full = null) {
+function formatDate($lang, $date, $full = false, $year = false) {
 
     $locale = $lang === 'fr' ? 'fr_FR.utf8' : 'en_GB.utf8';
     setlocale(LC_TIME, $lang);

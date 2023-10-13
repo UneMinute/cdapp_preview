@@ -1,0 +1,100 @@
+[
+  {
+    "startDate": "2023-12-16",
+    "endDate": "2023-12-22",
+    "duration": 6,
+    "price": "280,50",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2023-12-23",
+    "endDate": "2024-04-19",
+    "duration": 6,
+    "price": "330,00",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2024-04-20",
+    "endDate": "2024-04-28",
+    "duration": 6,
+    "price": "280,50",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2023-12-16",
+    "endDate": "2023-12-22",
+    "duration": 7,
+    "price": "325,00",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2023-12-23",
+    "endDate": "2024-04-19",
+    "duration": 7,
+    "price": "382,00",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2024-04-20",
+    "endDate": "2024-04-28",
+    "duration": 7,
+    "price": "325,00",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2023-12-16",
+    "endDate": "2023-12-22",
+    "duration": 8,
+    "price": "369,00",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2023-12-23",
+    "endDate": "2024-04-19",
+    "duration": 8,
+    "price": "434,00",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2024-04-20",
+    "endDate": "2024-04-28",
+    "duration": 8,
+    "price": "369,00",
+    "pass": "laplagne"
+  },
+  {
+    "startDate": "2023-12-16",
+    "endDate": "2023-12-22",
+    "duration": 6,
+    "price": "314,00",
+    "pass": "paradiski"
+  },
+  {
+    "startDate": "2023-12-23",
+    "endDate": "2024-04-20",
+    "duration": 6,
+    "price": "369,00",
+    "pass": "paradiski"
+  },
+  {
+    "startDate": "2023-12-16",
+    "endDate": "2023-12-22",
+    "duration": 7,
+    "price": "366,50",
+    "pass": "paradiski"
+  },
+  {
+    "startDate": "2023-12-23",
+    "endDate": "2024-04-20",
+    "duration": 7,
+    "price": "431,00",
+    "pass": "paradiski"
+  },
+  {
+    "startDate": "2023-12-23",
+    "endDate": "2024-04-20",
+    "duration": 8,
+    "price": "490,00",
+    "pass": "paradiski"
+  }
+]

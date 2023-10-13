@@ -1,7 +1,5 @@
 {
     "en": {
-        "title": "",
-        "subtitle": "",
         "weekTitle": "",
         "weekInfo": "",
         "week": "Week of",
@@ -12,8 +10,6 @@
         "contract":""
     },
     "fr": {
-        "title": "Profitez de nos réductions !",
-        "subtitle": "",
         "weekTitle": "",
         "weekInfo": "",
         "week": "Semaine du",
