@@ -3,11 +3,13 @@ const dropdownList = document.getElementById("duration-dropdown-list");
 const content = document.getElementById("content");
 const weekLists = document.querySelectorAll(".week-list");
 const durations = document.querySelectorAll(".tab-pane");
-let screenSize = "small";
 const carousels = document.querySelectorAll(".carousel");
 const btn_prices = document.querySelectorAll('.sticky-results ul.results li');
 const modale = document.querySelector(".modale_container");
 const main = document.querySelector('main');
+const sticky_outers = document.querySelectorAll(".sticky-results_outer");
+const sticky_bgs = document.querySelectorAll(".sticky_bg");
+let screenSize = "small";
 
 const getCarouselProperties = (weekList) => {
   const currentContainerWidth = main.offsetWidth;
@@ -22,7 +24,6 @@ const getCarouselProperties = (weekList) => {
 
 }
 
-// Afficher la première option par défaut
 dropdownHeader.querySelector("span.selected_value").textContent =
   dropdownList.querySelector("li").textContent;
 
@@ -36,27 +37,22 @@ dropdownList.addEventListener("click", (event) => {
     closeStickies();
     const selectedValue = event.target.getAttribute("data-value");
 
-    // Masquer toutes les divs
     const panels = content.querySelectorAll(".tab-pane");
     panels.forEach((pane) => {
       pane.classList.add("hidden");
     });
 
-    // Afficher la div correspondante en utilisant l'attribut data-id
     const selectedDiv = content.querySelector(`[data-id="${selectedValue}"]`);
     selectedDiv.classList.remove("hidden");
 
-    // Mettre à jour le texte du choix
     dropdownHeader.querySelector("span.selected_value").textContent =
       event.target.textContent;
 
-    // Cacher la liste déroulante
     dropdownList.classList.remove("show");
     dropdownHeader.classList.remove("active");
   }
 });
 
-// Fermer la liste déroulante si l'utilisateur clique en dehors
 document.addEventListener("click", (event) => {
 
   if (event.target === modale || modale.contains(event.target)) return;
@@ -120,13 +116,13 @@ durations.forEach((duration) => {
           const outer = duration.querySelector(".sticky-results_outer");
           outer.classList.add('full');
         }
-        // if (screenSize === "large") {
-        //   relatedSticky.scrollIntoView({
-        //       behavior: "smooth",
-        //       block: "center",
-        //       inline: "center",
-        //     });
-        // }
+        if (screenSize === "small") {
+          relatedSticky.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }        
         relatedSticky.classList.add("show");
         price_btn.classList.add("selected");
       });
@@ -163,14 +159,31 @@ const loadCarousel = () => {
     let currentPosition = 0;
     const currentTransition = window.getComputedStyle(carousel).transition;
 
-    // weekList.style.maxWidth = `${properties.containerWidth}px`;
-    // wrapper.style.maxWidth = `${properties.carouselWidth}px`;
+    if (screenSize === 'large') {
+      weekList.style.maxWidth = `${properties.containerWidth}px`;
+      wrapper.style.maxWidth = `${properties.carouselWidth}px`;
+      sticky_outers.forEach((sticky) => {
+        sticky.style.maxWidth = `${properties.containerWidth}px`;
+      })
+      sticky_bgs.forEach((sticky) => {
+        sticky.style.maxWidth = `${properties.containerWidth}px`;
+      })
+    } else {
+      weekList.style.maxWidth = 'none';
+      wrapper.style.maxWidth = 'none';
+      sticky_outers.forEach((sticky) => {
+        sticky.style.maxWidth = 'none';
+      })
+      sticky_bgs.forEach((sticky) => {
+        sticky.style.maxWidth = 'none';
+      })
+    }   
 
     const clickHandler = (callback, delay) => {
       let lastClickTime = 0;
       let fastclick = false;
 
-      return function () {
+      return () => {
         const now = Date.now();
         if (now - lastClickTime < delay) {
           fastclick = true;
@@ -293,13 +306,9 @@ const loadCarousel = () => {
       if (diff > 0) {
         const newIndex = Math.floor(diff / 40);
         if (currentIndex + newIndex < carousel.children.length - newIndex - visibleItemCount) {
-          console.log('currentIndex',currentIndex);
-          console.log('newIndex',newIndex);
-          console.log('length',carousel.children.length);
           currentIndex = currentIndex + newIndex;
         } else if (currentIndex + visibleItemCount < carousel.children.length) {
           currentIndex = carousel.children.length - visibleItemCount;
-          console.log('ho');
         }
         prevTranslate = updateCarousel();
       } else if (diff < 0) {
@@ -331,11 +340,22 @@ const loadCarousel = () => {
 btn_prices.forEach((btn) => {
   btn.addEventListener('click', () => {
     modale.classList.add('show');
+    modale.querySelector('.modale_inner').scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "center",
+    });
+    document.dispatchEvent(
+      new CustomEvent("setIndex", {
+        detail: { index: btn.querySelector('.sticky-result_price').getAttribute('option-value') },
+      }),
+    );
   })
 })
 
 modale.addEventListener('click', (event) => {
-  if (event.target !==  modale.querySelector('.modale') ) {
+  const innerModale = modale.querySelector('.modale');
+  if (event.target !==  innerModale && !innerModale.contains(event.target)) {
     modale.classList.remove('show');
   }
 })
@@ -343,12 +363,126 @@ modale.querySelector('.modale__close-btn').addEventListener('click', (event) => 
     modale.classList.remove('show');
 })
 
-loadCarousel();
-
 const updateScreenSize = () => {
-  screenSize = window.innerWidth >= 1000 ? "large" : "small";
+  screenSize = window.innerWidth >= 700 ? "large" : "small";
   loadCarousel();
 };
 
 window.onresize = updateScreenSize;
 updateScreenSize();
+
+loadCarousel();
+
+const loadOffersCarousel = () => {
+  const offersCarousel = document.querySelector('.offers_carousel');
+
+  if (!offersCarousel) return;
+  const offersContainer = offersCarousel.querySelector('.offers_carousel-container');
+  const currentTransition = window.getComputedStyle(offersContainer).transition;
+  const items = offersCarousel.querySelectorAll('.offers_carousel-item');
+  const prevButton = offersCarousel.querySelector('.dot.prev:not(.active)');
+  const nextButton = offersCarousel.querySelector('.dot.next:not(.active)');
+  const goToButton = offersCarousel.querySelector('.goto-essential');
+  let isDragging = false;
+  let startPosition = null;
+
+  let currentIndex = 0;
+
+  document.addEventListener(
+    "setIndex",
+      (e) => {
+        const option = e.detail.index;
+        offersContainer.style.transition = "none";
+        if (option === 'a') {
+          goToSlide(0);
+        } else if (option === 'b') {
+          goToSlide(1);
+        }
+        offersContainer.style.transition = currentTransition;
+      },
+      false,
+    );
+
+  offersContainer.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      startPosition = e.clientX;
+    });
+
+    offersContainer.addEventListener("mousemove", (e) => {
+  
+      if (isDragging) {
+        
+        const newPosition = e.clientX;
+        if (newPosition < startPosition) {
+          if (currentIndex !== 1) goToSlide(1);
+        } else if (newPosition > startPosition) {
+          if (currentIndex !== 0) goToSlide(0);
+        }
+      }
+    });
+  
+    offersContainer.addEventListener("mouseup", (e) => {
+  
+      if (isDragging) {
+        isDragging = false;
+        startPosition = null;
+      }
+  
+    });
+  
+    offersContainer.addEventListener("mouseleave", (e) => {
+      if (isDragging) {
+        offersContainer.dispatchEvent(new MouseEvent("mouseup"));
+      }
+    });
+  
+
+  const goToSlide = (index) => {
+    currentIndex = index;
+    const translateX = -currentIndex * 100;
+    offersContainer.style.transform = `translateX(${translateX}%)`;
+    offersContainer.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "center",
+    });
+  }
+
+  prevButton.addEventListener('click', () => {
+    if (currentIndex === 1) {
+      goToSlide(0);
+    }
+  });
+
+  nextButton.addEventListener('click', () => {
+    if (currentIndex === 0) {
+      goToSlide(1);
+    }
+  });
+
+  goToButton.addEventListener('click', () => {
+    if (currentIndex === 0) {
+      goToSlide(1);
+    }
+  });
+}
+
+loadOffersCarousel();
+
+
+forceLandscapeOrientation = () => {
+  if (window.screen.orientation) {
+    screen.orientation.lock('landscape');
+  }
+}
+
+const modalImage = document.querySelector('.offer_img-container');
+if (modalImage) {
+  modalImage.addEventListener('click', () => {
+
+    const img = modale.querySelector('.img_container');
+    img.classList.toggle('large');
+    
+    forceLandscapeOrientation();
+  });
+}
